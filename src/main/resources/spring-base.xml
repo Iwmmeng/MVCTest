@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop 
+        http://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/task
+        http://www.springframework.org/schema/task/spring-task.xsd">
+        
+	<!-- 注册组件扫描器  -->
+	<context:component-scan base-package="com.wang.test"/>
+	<!--<task:annotation-driven/>-->
+	<!--引入外部的配置文件  存放的是数据库连接的四要素-->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+	
+	
+	<!-- 数据源  连接池c3p0 -->
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${db1.jdbc.url}"/>
+		<property name="user" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+	<!-- sessionFactory -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+		<!-- 指定mybatis映射文件的路径 -->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mappers/*.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- mapper扫描配置器  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+		<!-- 指定基本扫描包 -->
+		<property name="basePackage" value="com.wang.test.dao"/>
+	</bean>
+	
+	<!-- transactionManager-->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 通知Advice,Aspect是横切面,是一个抽象的概念;Advice是Aspect的具体实现 -->
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" isolation="DEFAULT" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="select*" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+	<aop:aspectj-autoproxy/>
+	<!-- <aop:config>
+		<aop:pointcut expression="" id=""/>
+		<aop:aspect order="before" id="" ref=""></aop:aspect>
+	</aop:config> -->
+	<!-- 切入 -->	
+	<aop:config>
+		<aop:advisor advice-ref="transactionAdvice" pointcut="execution(* com.wang.test.service.*.*(..))"/>
+	</aop:config>
+</beans>
+
+
