@@ -1,7 +1,5 @@
 package com.utils;
 
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -39,12 +37,12 @@ public class CommonUtils {
         }
 
     }
-    @Test
-    public void test(){
-        readFileByLines("/Users/wangmeng/Desktop/数据采集专项/problem_wifi_sample_record");
+//    @Test
+//    public void test(){
+//        readFileByLines("/Users/wangmeng/Desktop/数据采集专项/problem_wifi_sample_record");
+//
 
-
-    }
+//    }
 
 
 

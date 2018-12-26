@@ -22,10 +22,10 @@ public class Child extends Base {
     }
 
     public static void main(String[] args) {
-        Child child = new Child();
-        Base base = child;
-        (base.s).sout;
-        System.out.println((base.m));
+//        Child child = new Child();
+//        Base base = child;
+//        (base.s).sout;
+//        System.out.println((base.m));
 
     }
 

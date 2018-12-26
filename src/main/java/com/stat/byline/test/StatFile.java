@@ -1,7 +1,5 @@
 package com.stat.byline.test;
 
-import org.junit.Test;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -54,12 +52,12 @@ public class StatFile {
     }
 
 
-    @Test
-    public void test(){
-        statFileByLine("/Users/wangmeng/sdkVersion.txt");
-
-
-    }
+//    @Test
+//    public void test(){
+//        statFileByLine("/Users/wangmeng/sdkVersion.txt");
+//
+//
+//    }
 
 
 }
