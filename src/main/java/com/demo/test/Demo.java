@@ -9,9 +9,15 @@ import java.util.*;
 public class Demo {
     public static void main(String[] args) {
 //        solution("77 88");
-        solution4("12,13,14,5,6,7,8,9,10");
+//        solution4("12,13,14,5,6,7,8,9,10");
 //        solution3("5");
 //        solution2("10 10 11 12 12 11 16");
+        Integer[] list11 = new Integer[]{ 1,2,3,4,8,22,44};
+        Integer[] list12 = new Integer[]{ 0,2,3,7,33,66};
+
+        List<Integer> list1 = Arrays.asList(list11);
+        List<Integer> list2 = Arrays.asList(list12);
+        mergeList(list1,list2);
 
     }
 
@@ -108,14 +114,35 @@ public class Demo {
     }
     /**11. 给定任意一个较短的子串，和另一个较长的字符串，
      * 判断短的字符串是否能够由长字符串中的字符组合出来，且长串中的每个字符只能用一次。
-     *
      * 一行数据包括一个较短的字符串和一个较长的字符串，用一个空格分隔，如： ab aab bb abc aa cccc uak areuok
      * */
 
 
 
+    /**
+     * 两个有序list，length不确定，求得一个有序的两个list的并集
+     * */
 
-
-
-
+    public static void mergeList(List<Integer> list1,List<Integer> list2){
+        List list= new ArrayList();
+        int flag1=0;
+        int flag2=0;
+        for(int i=0;i<list1.size()+list2.size();i++){
+            if(flag1==list1.size()){
+                list.add(list2.get(flag2++));
+            }else if (flag2==list2.size()){
+                list.add(list1.get(flag1++));
+            }else {
+                if (list1.get(flag1)<list2.get(flag2)){
+                    list.add(list1.get(flag1++));
+                }else {
+                    list.add(list2.get(flag2++));
+                }
+            }
+        }
+        System.out.println(list.size());
+        for(int a=0;a<list.size();a++){
+            System.out.println(list.get(a));
+        }
+    }
 }
