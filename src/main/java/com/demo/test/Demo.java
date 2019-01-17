@@ -9,9 +9,12 @@ import java.util.*;
 public class Demo {
     public static void main(String[] args) {
 //        solution("77 88");
-        solution4("12,13,14,5,6,7,8,9,10");
+//        solution4("12,13,14,5,6,7,8,9,10");
 //        solution3("5");
 //        solution2("10 10 11 12 12 11 16");
+        System.out.println(isHuiwen666("2"));
+        System.out.println(isHuiwen666("234"));
+        System.out.println(isHuiwen666("2562652"));
 
     }
 
@@ -111,6 +114,36 @@ public class Demo {
      *
      * 一行数据包括一个较短的字符串和一个较长的字符串，用一个空格分隔，如： ab aab bb abc aa cccc uak areuok
      * */
+
+
+
+
+
+
+    /**
+     *666. 判断一个字符串是否为回文
+    **/
+    public static boolean isHuiwen666(String string) {
+        int length = string.length();
+        if (length > 1) {
+            for (int i = 0; i <= length / 2; i++) {
+                if (string.charAt(i) != string.charAt(length - 1 - i)) {
+                    System.out.println("bu shi huiwen"+string);
+                    return false;
+                }
+            }
+            System.out.println("pass pass"+string);
+            return true;
+
+        } else if (length == 1) {
+            System.out.println("okokok");
+            return true;
+        } else {
+            System.out.println("nullnullnull");
+            return false;
+        }
+    }
+
 
 
 
