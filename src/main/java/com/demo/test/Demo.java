@@ -1,5 +1,7 @@
 package com.demo.test;
 
+import org.springframework.test.context.TestExecutionListeners;
+
 import java.util.*;
 
 /**
@@ -122,7 +124,6 @@ public class Demo {
     /**
      * 两个有序list，length不确定，求得一个有序的两个list的并集
      * */
-
     public static void mergeList(List<Integer> list1,List<Integer> list2){
         List list= new ArrayList();
         int flag1=0;
@@ -146,3 +147,4 @@ public class Demo {
         }
     }
 }
+
