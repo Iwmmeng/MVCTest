@@ -2,6 +2,8 @@ package com.demo.test;
 
 import org.junit.Test;
 
+import javax.sound.midi.Soundbank;
+import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -139,5 +141,55 @@ public class Demo2 {
             this.name = name;
             return this;
         }
+    }
+/**
+ * 获取连续的数，一共有几个这样的数*/
+    @Test
+    public void getContinueMax(){
+        int maxCount =1;
+        int tmpCount =1;
+        Integer[] ints=new Integer[]{4,3,5,11,7,8,9,10};
+        Arrays.sort(ints);
+        List<Integer> list=Arrays.asList(ints);
+        System.out.println(list);
+        for(int i=1;i<list.size();i++){
+            if(list.get(i)-list.get(i-1)==1){
+                tmpCount++;
+            }else {
+                if(tmpCount>maxCount){
+                    maxCount=tmpCount;
+                }
+                tmpCount=1;
+            }
+        }if(tmpCount!=1){
+            maxCount=tmpCount;
+        }
+        System.out.println(maxCount+"======");
+    }
+    /**
+     * 短串是否包含在长串中*/
+    @Test
+    public void isContain() {
+        boolean flag = true;
+        int count = 0;
+        String longStr = "qweraqwtyu";
+        String shortStr = "ra";
+        for (int i = 0; i < longStr.length(); i++) {
+            flag = true;
+            if (shortStr.charAt(0) == longStr.charAt(i)) {
+                for (int j = 1; j < shortStr.length(); j++) {
+                    if (shortStr.charAt(j) != longStr.charAt(i + j)) {
+                        flag = false;
+                        break;
+                    }
+                }
+                if (flag == true) {
+                    break;
+                }
+            } else {
+                flag = false;
+            }
+        }
+        System.out.println("flag:" + flag);
     }
 }
