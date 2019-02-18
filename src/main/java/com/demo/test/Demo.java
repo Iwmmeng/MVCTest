@@ -160,21 +160,19 @@ public class Demo {
      * 两个有序list，length不确定，求得一个有序的两个list的并集
 <<<<<<< HEAD
      * */
-    public static void mergeList(List<Integer> list1,List<Integer> list2){
-        List list= new ArrayList();
-        int flag1=0;
-        int flag2=0;
-        for(int i=0;i<list1.size()+list2.size();i++){
-            if(flag1==list1.size()){
-=======
-     */
+//    public static void mergeList(List<Integer> list1,List<Integer> list2){
+//        List list= new ArrayList();
+//        int flag1=0;
+//        int flag2=0;
+//        for(int i=0;i<list1.size()+list2.size();i++){
+//            if(flag1==list1.size()){
+
     public static void mergeList(List<Integer> list1, List<Integer> list2) {
         List list = new ArrayList();
         int flag1 = 0;
         int flag2 = 0;
         for (int i = 0; i < list1.size() + list2.size(); i++) {
             if (flag1 == list1.size()) {
->>>>>>> 4d7a1d773cccb791445bc4aadcda6b9bd8ec1eb1
                 list.add(list2.get(flag2++));
             } else if (flag2 == list2.size()) {
                 list.add(list1.get(flag1++));
