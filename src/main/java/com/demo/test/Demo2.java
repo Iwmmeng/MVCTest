@@ -2,12 +2,9 @@ package com.demo.test;
 
 import org.junit.Test;
 
-import javax.sound.midi.Soundbank;
-import java.lang.ref.SoftReference;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -192,4 +189,33 @@ public class Demo2 {
         }
         System.out.println("flag:" + flag);
     }
+
+    /**
+     * 短串是否可以由长串的字符拼成，且长串的字符不可以被重复使用,且最后返回的是字符串类型的true/false*/
+    @Test
+    public void isConsist(){
+        String longStr="kiuybhj";
+        String shortStr="ki";
+        boolean flag = false;
+        char[] longArr = longStr.toCharArray();
+        char[] shortArr = shortStr.toCharArray();
+        List longList = Arrays.asList(longArr);
+        List shortList = Arrays.asList(shortArr);
+        for(int i=0;i<shortList.size();i++){
+            for(int j=0;j<longList.size();j++){
+                if(shortList.get(i)==longList.get(j)){
+                    longList.remove(j);
+                    flag = true;
+
+                    break;
+                }else {
+                    flag = false;
+                }
+            }
+        }
+
+
+
+    }
+
 }
